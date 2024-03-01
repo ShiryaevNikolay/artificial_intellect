@@ -71,7 +71,7 @@ test_x = encoded_inputs[train_index:]
 test_y = encoded_outputs[train_index:]
 
 model = keras.Sequential([
-    keras.layers.Dense(10, input_dim=3, activation="relu"),
+    keras.layers.Dense(9, input_dim=3, activation="relu"),
     keras.layers.Dense(1),
 ])
 
@@ -85,9 +85,9 @@ fit_result = model.fit(
     x=train_x,
     y=train_y,
     batch_size=10,
-    epochs=1000,
+    epochs=500,
     validation_split=0.2,
-    verbose=0
+    verbose=2
 )
 
 plt.title("Losses train/validation")
@@ -111,5 +111,8 @@ print(real_data)
 
 model.save_weights("weights.h5")
 
-for layer in model.layers:
+for index, layer in enumerate(model.layers):
+    print("Слой: " + str(index))
     print(layer.get_weights()[0])
+
+print("Коэффициент a после обучения нейросети:", model.layers[-1].get_weights()[0][0][0])
