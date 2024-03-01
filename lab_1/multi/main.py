@@ -7,7 +7,7 @@ import keras
 file_name = "dataset.csv"
 file_name_with_noise = "dataset_noise.csv"
 
-data_frame = pd.read_csv(file_name)
+data_frame = pd.read_csv(file_name_with_noise)
 
 print(data_frame)
 
